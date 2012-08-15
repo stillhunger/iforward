@@ -100,6 +100,8 @@ public class MainActivity extends Activity {
     		MainActivity.this.startActivity(intent);
     		break;
     	case R.id.menu_settings:
+    		intent = new Intent(MainActivity.this,SettingsActivity.class);
+    		MainActivity.this.startActivity(intent);
     		break;
     	}
 		return super.onOptionsItemSelected(item);
