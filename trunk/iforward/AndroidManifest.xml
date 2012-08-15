@@ -28,6 +28,8 @@
         <activity android:name=".ContactsActivity" />
         <activity android:name=".ForwardActivity" />
         <activity android:name=".AboutActivity" />
+        <activity android:name=".SettingsActivity" />
+        
         <receiver android:name="cn.xm.hanley.receiver.BlockCallReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
