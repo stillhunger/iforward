@@ -7,7 +7,7 @@
     <string name="ok">确定</string>
     <string name="cancle">取消</string>
     <string name="fnumber">转接号码</string>
-    <string name="flist">转接列表</string>
+    <string name="flist">拦截对象</string>
     <string name="tip_no_content">需录入转接号码</string>
     <string name="tip_no_item_selected">未曾选择</string>
     <string name="tips_main">你需要下面两个步骤完成软件设置</string>

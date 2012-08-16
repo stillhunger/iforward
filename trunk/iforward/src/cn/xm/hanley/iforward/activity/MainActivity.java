@@ -117,16 +117,12 @@ public class MainActivity extends Activity {
 			Intent intent = null;
 			switch(v.getId()){
 			case R.id.btn_fnumber:
-//				intent = new Intent(MainActivity.this,ForwardActivity.class);
-//				startActivityForResult(intent,CODE_REQUEST_FORWARD);
-				BlockSQLite db = DataBaseFactoryUtil.createBlockContactDB(MainActivity.this);
-				db.insert("HanleyTowne", "18659264592");
+				intent = new Intent(MainActivity.this,ForwardActivity.class);
+				startActivityForResult(intent,CODE_REQUEST_FORWARD);
 				break;
 			case R.id.btn_flist:
-//				intent = new Intent(MainActivity.this,ContactsActivity.class);
-//				startActivityForResult(intent,CODE_REQUEST_CONTACT);
-				BlockSQLite db2 = DataBaseFactoryUtil.createBlockContactDB(MainActivity.this);
-				db2.deleteContactByNumber("18659264592");
+				intent = new Intent(MainActivity.this,ContactsActivity.class);
+				startActivityForResult(intent,CODE_REQUEST_CONTACT);
 				break;
 			default:
 				Log.i(TAG, "btnListener default");
