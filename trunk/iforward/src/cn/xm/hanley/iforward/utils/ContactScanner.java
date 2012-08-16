@@ -78,7 +78,7 @@ public class ContactScanner extends Thread {
 						Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_CONTACT, map);
 						msg.sendToTarget();
 					}
-					break;// 目前不考虑有多个号码的联系人，故此break
+					// FIXME 通知显示需要优化
 				}
 				phones.close();
 			}

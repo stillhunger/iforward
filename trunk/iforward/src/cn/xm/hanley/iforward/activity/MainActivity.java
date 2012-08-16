@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 				startActivityForResult(intent,CODE_REQUEST_FORWARD);
 				break;
 			case R.id.btn_flist:
-				intent = new Intent(MainActivity.this,ContactsActivity.class);
+				intent = new Intent(MainActivity.this,ForwardMain.class);
 				startActivityForResult(intent,CODE_REQUEST_CONTACT);
 				break;
 			default:
