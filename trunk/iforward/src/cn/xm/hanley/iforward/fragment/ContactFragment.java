@@ -9,12 +9,11 @@ import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.ListFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,7 @@ import android.widget.Toast;
  * @date   2012-8-16下午3:57:55
  * @Google+ http://gplus.to/hanleytowne
  */
-public class ContactBlockFragment extends ListFragment {
+public class ContactFragment extends ListFragment {
 	
 	private static final String TAG = "ContactBlockFragment";
 	private Button btnOk;
@@ -123,7 +122,7 @@ private void showContacts(){
 		if(null == simapleAdapter){
 			String[] itemName = new String[]{ "contactName","contactNumber","lvcheck"};
 			int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber,R.id.lv_checkbox};
-			simapleAdapter = new SimpleAdapter(getActivity(), data,R.layout.item_contacts_loader, itemName, itemValue);
+			simapleAdapter = new SimpleAdapter(getActivity(), data,R.layout.item_contact, itemName, itemValue);
 			this.setListAdapter(simapleAdapter);
 		}else{
 			simapleAdapter.notifyDataSetChanged();

@@ -1,8 +1,8 @@
 package cn.xm.hanley.iforward.activity;
 
 
-import cn.xm.hanley.iforward.fragment.ContactBlockFragment;
-import cn.xm.hanley.iforward.fragment.CustomBlockFragment;
+import cn.xm.hanley.iforward.fragment.ContactFragment;
+import cn.xm.hanley.iforward.fragment.CustomFragment;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -66,23 +66,23 @@ public class ForwardMain extends Activity implements ActionBar.OnNavigationListe
 
 	    @Override
 	    public boolean onNavigationItemSelected(int position, long id) {
-	    	Fragment newFragment = null;
+	    	android.support.v4.app.Fragment newFragment = null;
 	    	
 	    	switch(position){
 	    	case 0:
-	    		newFragment = new CustomBlockFragment();
+	    		newFragment = new CustomFragment();
 	    		break;
 			case 1:
-				newFragment = new ContactBlockFragment();
+				newFragment = new ContactFragment();
 	    		break;
 	    	default:
 	    		break;
 	    	}
 	    	
-	    	FragmentManager fm = getFragmentManager();
-	    	FragmentTransaction ft = fm.beginTransaction();
-	    	ft.replace(R.id.container, newFragment);
-	    	ft.commit();
+//	    	FragmentManager fm = getFragmentManager();
+//	    	FragmentTransaction ft = fm.beginTransaction();
+//	    	ft.replace(R.id.container, newFragment);
+//	    	ft.commit();
 	        return true;
 	    }
 	

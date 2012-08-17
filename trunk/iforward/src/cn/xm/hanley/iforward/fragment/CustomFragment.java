@@ -1,8 +1,8 @@
 package cn.xm.hanley.iforward.fragment;
 
 import cn.xm.hanley.iforward.activity.R;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  * @date   2012-8-16下午3:53:05
  * @Google+ http://gplus.to/hanleytowne
  */
-public class CustomBlockFragment extends Fragment{
+public class CustomFragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

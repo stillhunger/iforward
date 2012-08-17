@@ -21,6 +21,12 @@
     <string name="google">Google+: http://gplus.to/hanleytowne</string>
     <string name="twitter">twitter: http://www.facebook.com/hanleytowne</string>
     <string name="facebook">facebook: http://www.facebook.com/hanleytowne</string>
+    
     <string name="custom_block">手动添加</string>
-	<string name="contact_block">从联系人选择</string>
+    <string name="contact_block">从联系人选择</string>
+    <string name="title_fnumber">转接号码</string>
+    <string name="title_fpeople">转接对象</string>
+    <string name="title_history">转接历史</string>
+	<string name="transferred_to">来电已转至</string>
+    
 </resources>
