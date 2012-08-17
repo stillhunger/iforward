@@ -20,7 +20,7 @@ public class DataBaseFactoryUtil {
 	 * @return BlockSQLite
 	 * @throws
 	 */
-	public static BlockSQLite createBlockContactDB(Context context){
+	public static BlockSQLite createFordwardDB(Context context){
 		BlockSQLite bs = new BlockSQLite(context);
 		SQLiteDatabase sd = bs.getWritableDatabase();
 		sd.close();

@@ -7,6 +7,7 @@ import cn.xm.hanley.iforward.activity.R.menu;
 import cn.xm.hanley.iforward.activity.R.string;
 import cn.xm.hanley.iforward.fragment.ContactFragment;
 import cn.xm.hanley.iforward.fragment.CustomFragment;
+import cn.xm.hanley.iforward.fragment.ForwardFragment;
 import cn.xm.hanley.iforward.fragment.HistoryFragment;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -126,7 +127,7 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
 	    		newFragment = new HistoryFragment();
 	    		break;
 			case 1:
-				newFragment = new ContactFragment();
+				newFragment = new ForwardFragment();
 	    		break;
 			case 2:
 				newFragment = new CustomFragment();

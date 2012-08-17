@@ -85,13 +85,13 @@ public class BlockSQLite extends SQLiteOpenHelper {
 	
 	
 	/**
-	 * 查询被拦截的联系人列表
+	 * 查询被转接的联系人列表
 	 * @Title: queryBlockContact
 	 * @return
 	 * @return ArrayList<Contact>
 	 * @throws
 	 */
-	public ArrayList<Contact> queryBlockContact(){
+	public ArrayList<Contact> queryForwardContact(){
 		ArrayList<Contact> contactList = new ArrayList<Contact>();
 		try {
 			SQLiteDatabase db = this.getReadableDatabase();

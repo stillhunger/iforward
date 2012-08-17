@@ -21,8 +21,11 @@ public class Constants {
 	/**显示联系人*/
 	public static final int RESPONSE_CODE_SHOW_CONTACT = 1;
 	
-	/**显示历史转移*/
+	/**显示历史转接*/
 	public static final int RESPONSE_CODE_SHOW_HISTORY = 2;
+	
+	/**显示被转接记录*/
+	public static final int RESPONSE_CODE_SHOW_FORWARD = 3;
 	
 	public final static String SPS_FORWARD = "forward";
 	
