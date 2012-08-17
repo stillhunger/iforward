@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:theme="@style/CustomActionBar"
+            android:name="cn.xm.hanley.iforward.TabSwipeMain"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +32,7 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ForwardMain" />
+        <activity android:name=".MainActivity" />
 
         <receiver android:name="cn.xm.hanley.receiver.BlockCallReceiver" >
             <intent-filter>

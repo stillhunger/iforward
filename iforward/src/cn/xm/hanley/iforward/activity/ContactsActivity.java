@@ -43,7 +43,7 @@ public class ContactsActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list_contacts_loader);
+		setContentView(R.layout.list_contact);
 		findViewByids();
 		setListeners();
 		ContactScanner cs = new ContactScanner(handler,this);
@@ -115,7 +115,7 @@ public class ContactsActivity extends ListActivity {
 		ArrayList<HashMap<String,Object>> data = ContactsUtil.loadContacts(this);
 		String[] itemName = new String[]{ "contactName","contactNumber","lvcheck"};
 		int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber,R.id.lv_checkbox};
-		SimpleAdapter simapleAdapter = new SimpleAdapter(this, data,R.layout.item_contacts_loader, itemName, itemValue);
+		SimpleAdapter simapleAdapter = new SimpleAdapter(this, data,R.layout.item_contact, itemName, itemValue);
 		this.setListAdapter(simapleAdapter);
 		simapleAdapter.notifyDataSetChanged();
 	}
@@ -125,7 +125,7 @@ public class ContactsActivity extends ListActivity {
 		if(null == simapleAdapter){
 			String[] itemName = new String[]{ "contactName","contactNumber","lvcheck"};
 			int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber,R.id.lv_checkbox};
-			simapleAdapter = new SimpleAdapter(this, data,R.layout.item_contacts_loader, itemName, itemValue);
+			simapleAdapter = new SimpleAdapter(this, data,R.layout.item_contact, itemName, itemValue);
 			this.setListAdapter(simapleAdapter);
 		}else{
 			simapleAdapter.notifyDataSetChanged();
