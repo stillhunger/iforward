@@ -28,5 +28,5 @@
     <string name="title_fpeople">转接对象</string>
     <string name="title_history">转接历史</string>
 	<string name="transferred_to">来电已转至</string>
-    
+    <string name="delete">删除</string>
 </resources>

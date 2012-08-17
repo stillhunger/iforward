@@ -32,4 +32,7 @@
 	<item name="history_date" type="id"/>
 	<item name="history_time" type="id"/>	
 	<item name="history_transferred" type="id"/>
+	<item name="forward_number" type="id"/>
+	<item name="forward_name" type="id"/>
+	<item name="forward_delete" type="id"/>	
 </resources>
