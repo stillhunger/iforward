@@ -27,6 +27,9 @@ public class Constants {
 	/**显示被转接记录*/
 	public static final int RESPONSE_CODE_SHOW_FORWARD = 3;
 	
+	/**刷新转接记录*/
+	public static final int RESPONSE_CODE_SHOW_REFRESH = 4;
+	
 	public final static String SPS_FORWARD = "forward";
 	
 	public final static String SPS_FORWARD_NUMBER = "forward_number";

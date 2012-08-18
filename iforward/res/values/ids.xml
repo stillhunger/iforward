@@ -35,4 +35,6 @@
 	<item name="forward_number" type="id"/>
 	<item name="forward_name" type="id"/>
 	<item name="forward_delete" type="id"/>	
+	<item name="export" type="id"/>
+	<item name="clear" type="id"/>
 </resources>

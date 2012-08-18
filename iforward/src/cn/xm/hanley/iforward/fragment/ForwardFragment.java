@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import cn.xm.hanley.iforward.activity.ContactsActivity;
 import cn.xm.hanley.iforward.activity.R;
+import cn.xm.hanley.iforward.adapter.ForwardAdapter;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.domain.History;
@@ -62,8 +63,8 @@ public class ForwardFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		SimpleAdapter sa = (SimpleAdapter)this.getListAdapter();
-		HashMap<String,String> hm = (HashMap<String, String>) this.getListView().getItemAtPosition(position);
+//		SimpleAdapter sa = (SimpleAdapter)this.getListAdapter();
+//		HashMap<String,String> hm = (HashMap<String, String>) this.getListView().getItemAtPosition(position);
 		
 	}
 	
@@ -81,7 +82,13 @@ private void showForward(){
 	}
 	
 	
-	
+	@SuppressWarnings("unchecked")
+	public void showData(Object data){
+		ArrayList<Contact> contacts = (ArrayList<Contact>) data;
+		ForwardAdapter forwardAdapter = new ForwardAdapter(getActivity(),contacts,handler);
+		setListAdapter(forwardAdapter);
+		forwardAdapter.notifyDataSetChanged();
+	}
 	
 	
 	
@@ -92,19 +99,12 @@ private void showForward(){
 			
 			switch(msg.what){
 			case Constants.RESPONSE_CODE_SHOW_FORWARD:
-				@SuppressWarnings("unchecked")
-				ArrayList<Contact> contact = (ArrayList<Contact>) msg.obj;
-				for(Contact c:contact){
-					HashMap<String,String> m = new HashMap<String,String>();
-					m.put("forwardName", c.getContactName());
-					m.put("forwardNumber", c.getContactNumber());
-					data.add(m);
-				}
-				showForward();
+				showData(msg.obj);
+				break;
+			case Constants.RESPONSE_CODE_SHOW_REFRESH:
+				showData(msg.obj);
 				break;
 			}
-			
 		}
-		
 	};
 }
