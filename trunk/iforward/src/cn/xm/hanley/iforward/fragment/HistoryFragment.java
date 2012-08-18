@@ -8,7 +8,9 @@ import cn.xm.hanley.iforward.activity.R;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.domain.History;
+import cn.xm.hanley.iforward.sqlite.HistorySQLite;
 import cn.xm.hanley.iforward.utils.ContactScanner;
+import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
 import cn.xm.hanley.iforward.utils.HistoryScanner;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
@@ -39,8 +41,9 @@ public class HistoryFragment extends ListFragment {
 	
 	private static final String TAG = "HistoryFragment";
 	ArrayList<History> selectedContacts;
-	private SimpleAdapter simapleAdapter;
-	ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
+	private Button export;
+	private Button clear;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,32 +54,60 @@ public class HistoryFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		findViewByIds();
+		setListeners();
 		HistoryScanner cs = new HistoryScanner(handler,getActivity());
 		cs.start();
 	}
 	
-	
+	private void findViewByIds(){
+		export = (Button)getActivity().findViewById(R.id.export);
+		clear = (Button)getActivity().findViewById(R.id.clear);
+	}
 
+	private void setListeners(){
+		export.setOnClickListener(btnOnClickListener);
+		clear.setOnClickListener(btnOnClickListener);
+	}
+	
+	private OnClickListener btnOnClickListener = new OnClickListener(){
+
+		
+		@Override
+		public void onClick(View v) {
+			
+			switch(v.getId()){
+			case R.id.export:
+				
+				break;
+			case R.id.clear:
+				HistorySQLite history = DataBaseFactoryUtil.createHistoryDB(getActivity());
+				history.deleteAll();
+				Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_REFRESH);
+				msg.sendToTarget();
+				break;
+			default:
+				Log.i(TAG, "HistoryFragment btnOnClickListener switch default");
+				break;
+			}
+		}
+		
+	};
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		SimpleAdapter sa = (SimpleAdapter)this.getListAdapter();
 		HashMap<String,String> hm = (HashMap<String, String>) this.getListView().getItemAtPosition(position);
 		
 	}
 	
-private void showHistory(){
-		
-		if(null == simapleAdapter){
-			String[] itemName = new String[]{ "historyName","historyNumber","historyDate","historyTime","historyTransferred"};
-			int []   itemValue =  new int[]{ R.id.history_name,R.id.history_number,R.id.history_date,R.id.history_time,R.id.history_transferred};
-			simapleAdapter = new SimpleAdapter(getActivity(), data,R.layout.item_history, itemName, itemValue);
-			this.setListAdapter(simapleAdapter);
-		}else{
-			simapleAdapter.notifyDataSetChanged();
-		}
-
+	private void showHistory(ArrayList<HashMap<String,String>> data){
+		SimpleAdapter simapleAdapter = null;
+		String[] itemName = new String[]{ "historyName","historyNumber","historyDate","historyTime","historyTransferred"};
+		int []   itemValue =  new int[]{ R.id.history_name,R.id.history_number,R.id.history_date,R.id.history_time,R.id.history_transferred};
+		simapleAdapter = new SimpleAdapter(getActivity(), data,R.layout.item_history, itemName, itemValue);
+		this.setListAdapter(simapleAdapter);
 	}
 	
 	
@@ -84,10 +115,13 @@ private void showHistory(){
 	
 	
 	
+	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler(){
 
 		@Override
 		public void handleMessage(Message msg) {
+			
+			ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
 			
 			switch(msg.what){
 			case Constants.RESPONSE_CODE_SHOW_HISTORY:
@@ -102,7 +136,11 @@ private void showHistory(){
 					m.put("historyTransferred",getResources().getString(R.string.transferred_to)+":"+h.getHtransfer());
 					data.add(m);
 				}
-				showHistory();
+				showHistory(data);
+				break;
+			case Constants.RESPONSE_CODE_SHOW_REFRESH:
+				data.clear();
+				showHistory(data);
 				break;
 			}
 			

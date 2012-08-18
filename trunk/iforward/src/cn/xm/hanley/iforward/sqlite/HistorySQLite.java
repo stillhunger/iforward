@@ -86,8 +86,20 @@ public class HistorySQLite extends SQLiteOpenHelper {
 			db.delete("history", "hnumber=?", new String[]{nl});
 		}
 		db.close();
+		
 	}
 	
+	/**
+	 * 删除所有记录
+	 * 
+	 * @return void
+	 * @throws
+	 */
+	public void deleteAll(){
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete("history", null, null);
+		db.close();
+	}
 	
 	/**
 	 * 查询历史记录

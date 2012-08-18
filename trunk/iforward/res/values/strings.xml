@@ -29,4 +29,6 @@
     <string name="title_history">转接历史</string>
 	<string name="transferred_to">来电已转至</string>
     <string name="delete">删除</string>
+    <string name="export">导出</string>
+    <string name="clear">清除</string>
 </resources>
