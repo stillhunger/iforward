@@ -75,10 +75,6 @@ public class ForwardActivity extends Activity {
 					startActivity(intent);
 					SharedPreferences share = getSharedPreferences(Constants.SPS_FORWARD,MODE_WORLD_WRITEABLE);
 					share.edit().putString(Constants.SPS_FORWARD_NUMBER, number).commit();
-					
-					SharedPreferences share2 = getSharedPreferences(Constants.SPS_COMPLETE_PROGRESS,MODE_WORLD_READABLE);
-					share2.edit().putBoolean(Constants.SPS_NUMBER_FLAG, true).commit();
-					
 					setResult(RESULT_OK);
 					finish();
 				}

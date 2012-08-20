@@ -5,14 +5,21 @@ import java.util.HashMap;
 
 import cn.xm.hanley.iforward.activity.ContactsActivity;
 import cn.xm.hanley.iforward.activity.R;
+import cn.xm.hanley.iforward.activity.SelContactActivity;
 import cn.xm.hanley.iforward.adapter.ForwardAdapter;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.domain.History;
+import cn.xm.hanley.iforward.sqlite.BlockSQLite;
 import cn.xm.hanley.iforward.utils.ContactScanner;
+import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
 import cn.xm.hanley.iforward.utils.ForwardScanner;
 import cn.xm.hanley.iforward.utils.HistoryScanner;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,13 +32,14 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 
 /**
- * 转移历史记录
+ * 转接对象
  * @author HanleyTowne
  * @email  tanghly@gmail.com
  * @date   2012-8-17下午3:43:19
@@ -40,9 +48,10 @@ import android.widget.Toast;
 public class ForwardFragment extends ListFragment {
 	
 	private static final String TAG = "ForwardFragment";
+	protected static final int CODE_REQUEST_CONTACT = 1;
 	ArrayList<History> selectedContacts;
-	private SimpleAdapter simapleAdapter;
 	ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
+	private Button btnAddForward;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,11 +64,124 @@ public class ForwardFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		ForwardScanner cs = new ForwardScanner(handler,getActivity());
 		cs.start();
+		findViewByIds();
+		setListeners();
+	}
+	
+	private void findViewByIds(){
+		btnAddForward = (Button)getActivity().findViewById(R.id.btn_add_forward_num);
+	}
+	
+	private void setListeners(){
+		btnAddForward.setOnClickListener(btnListener);
+	}
+	
+	private OnClickListener btnListener = new OnClickListener(){
+
+		@Override
+		public void onClick(View v) {
+			switch(v.getId()){
+			case R.id.btn_add_forward_num:
+				clickOperation();
+				break;
+			}
+			
+		}
+		
+	};
+	
+	
+	private void clickOperation(){
+		
+		String contents[] = {
+			getResources().getString(R.string.manually_add),
+			getResources().getString(R.string.contacts_add),
+		};
+		
+		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+		b.setTitle(getResources().getString(R.string.title_fpeople));
+		b.setItems(contents, itemSelected);
+		b.show();
+	}
+	
+	public DialogInterface.OnClickListener itemSelected = new DialogInterface.OnClickListener(){
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			switch(which){
+			case 0:
+				manuallyAdd();
+				break;
+			case 1:
+				Intent intent = new Intent(getActivity(),ContactsActivity.class);
+				startActivityForResult(intent, CODE_REQUEST_CONTACT);
+				break;
+			}
+		}
+		
+	};
+	
+	
+	
+	
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode == Activity.RESULT_OK){
+			if(requestCode == CODE_REQUEST_CONTACT){
+				ArrayList<Contact> cttList = Constants.CURRENT_SELECTED_CONTACTS;
+				saveToDatabase(cttList);
+				Constants.CURRENT_SELECTED_CONTACTS = null;
+			}
+		}
+	}
+
+	private void manuallyAdd(){
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle(getResources().getString(R.string.manually_add));
+		final LayoutInflater factory = LayoutInflater.from(getActivity());
+		final View newView = factory.inflate(R.layout.layout_manually_add2, null);
+		final EditText editTextNum = (EditText)newView.findViewById(R.id.manually_number);
+		final EditText editTextMemo = (EditText)newView.findViewById(R.id.memo);;
+		builder.setView(newView);
+		builder.setPositiveButton(getResources().getString(R.string.ok), new android.content.DialogInterface.OnClickListener(){
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				String manuallyNumber = editTextNum.getText().toString();
+				String manuallyMemo = editTextMemo.getText().toString();
+				saveToDataBase(manuallyMemo,manuallyNumber);
+			}});
+		builder.setNegativeButton(getResources().getString(R.string.cancle), null);
+		builder.create();
+		builder.show();
 	}
 	
 	
+	private void saveToDataBase(String contactName,String contactNumber){
+		
+		if(null != contactNumber && contactNumber.length() > 0){
+			if(null == contactName || contactName.length() ==0){
+				contactName = "未知";
+			}
+			BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(getActivity());
+			db.insert(contactName, contactNumber);
+		}
+		ForwardScanner cs = new ForwardScanner(handler,getActivity());
+		cs.start();
+	}
+	
+	private void saveToDatabase(ArrayList<Contact> clist){
+		BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(getActivity());
+		for(Contact c:clist){
+			db.insert(c.getContactName(), c.getContactNumber());
+		}
+		ForwardScanner cs = new ForwardScanner(handler,getActivity());
+		cs.start();
+	}
+	
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
@@ -68,18 +190,6 @@ public class ForwardFragment extends ListFragment {
 		
 	}
 	
-private void showForward(){
-		
-		if(null == simapleAdapter){
-			String[] itemName = new String[]{ "forwardName","forwardNumber"};
-			int []   itemValue =  new int[]{ R.id.forward_name,R.id.forward_number};
-			simapleAdapter = new SimpleAdapter(getActivity(), data,R.layout.item_forwar, itemName, itemValue);
-			this.setListAdapter(simapleAdapter);
-		}else{
-			simapleAdapter.notifyDataSetChanged();
-		}
-
-	}
 	
 	
 	@SuppressWarnings("unchecked")

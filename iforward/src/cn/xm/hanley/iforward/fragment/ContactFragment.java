@@ -82,9 +82,6 @@ public class ContactFragment extends ListFragment {
 					if (0 == size) {
 						Toast.makeText(getActivity(),getResources().getString(R.string.tip_no_item_selected),Toast.LENGTH_SHORT).show();
 					}else{
-						
-						SharedPreferences share = getActivity().getSharedPreferences(Constants.SPS_COMPLETE_PROGRESS,getActivity().MODE_WORLD_READABLE);
-						share.edit().putBoolean(Constants.SPS_CONTACT_FLAG, true).commit();
 						getActivity().setResult(getActivity().RESULT_OK);
 						getActivity().finish();
 					}

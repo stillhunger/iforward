@@ -30,18 +30,13 @@ public class Constants {
 	/**刷新转接记录*/
 	public static final int RESPONSE_CODE_SHOW_REFRESH = 4;
 	
-	public final static String SPS_FORWARD = "forward";
+	/**导出到SDCARD*/
+	public static final int RESPONSE_CODE_EXPORT_SDCARD = 5;
 	
-	public final static String SPS_FORWARD_NUMBER = "forward_number";
 	
 	/********************SharedPreferences********************/
 	
-	/**软件设置完成进度*/
-	public final static String SPS_COMPLETE_PROGRESS = "complete_progress";
+	public final static String SPS_FORWARD = "forward";
 	
-	/**号码是否设置完成*/
-	public final static String SPS_NUMBER_FLAG = "number_flag";
-	
-	/**联系人是否设置完成*/
-	public final static String SPS_CONTACT_FLAG = "contact_flag";
+	public final static String SPS_FORWARD_NUMBER = "forward_number";
 }
