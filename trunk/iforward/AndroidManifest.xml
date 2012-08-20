@@ -37,7 +37,7 @@
         <activity android:name=".SelContactActivity" />
         
 
-        <receiver android:name="cn.xm.hanley.receiver.BlockCallReceiver" >
+        <receiver android:name="cn.xm.hanley.iforward.receiver.BlockCallReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>

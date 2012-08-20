@@ -1,19 +1,24 @@
 package cn.xm.hanley.iforward.receiver;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import com.android.internal.telephony.ITelephony;
-
-import cn.xm.hanley.iforward.constants.Constants;
-import cn.xm.hanley.iforward.domain.Contact;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.widget.Toast;
+import cn.xm.hanley.iforward.constants.Constants;
+import cn.xm.hanley.iforward.domain.Contact;
+import cn.xm.hanley.iforward.sqlite.BlockSQLite;
+import cn.xm.hanley.iforward.sqlite.HistorySQLite;
+import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
+
+import com.android.internal.telephony.ITelephony;
 
 /**
  * @Description: 转接来电,这里过滤拦截号码
@@ -46,28 +51,21 @@ public class BlockCallReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String action = intent.getAction();
-		Log.d(TAG, "action:" + action);
-		
 		init(context);
-		
 		if (PHONE_STATE.equals(action)) {
 			String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-			Log.i(TAG, "State: " + state);
-
 			String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-			
-			Log.i(TAG, "In Coming Call: " + number);
-			Toast.makeText(context, "number="+number, Toast.LENGTH_LONG).show();
-			ArrayList<Contact> al = Constants.CURRENT_SELECTED_CONTACTS;
-			if(null == al || al.size() == 0){
+			BlockSQLite bs = DataBaseFactoryUtil.createFordwardDB(context);
+			Contact mycontact = bs.queryForwardContactByNumber(number);
+			if(null == mycontact){
 				return;
-			}
-			//FIXME 需要修改为DB读取
-			for(Contact c:al){
-				Log.d("ContactName-->", c.getContactName());
-				Log.d("ContactNumber-->", c.getContactNumber());
-				if(number.endsWith(c.getContactNumber())){
+			}else{
+				String cnum = mycontact.getContactNumber();
+				cnum = cnum.replaceAll("-", "");
+				cnum = cnum.replaceAll(" ", "");
+				if(number.endsWith(cnum)){
 					block(state);
+					saveToHistory(context,mycontact);
 				}
 			}
 		}
@@ -84,16 +82,29 @@ public class BlockCallReceiver extends BroadcastReceiver {
 		
 		if (state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-			Log.i(TAG, "静音处理");
 			try {
 				iTelephony.endCall();
 			} catch (Exception e) {
 				Log.e(TAG, e.toString());
 			}
-			//恢复正常来电模式
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-			Log.i(TAG, "恢复正常来电模式");
 		}
+	}
+	
+	@SuppressWarnings("static-access")
+	@SuppressLint("WorldWriteableFiles")
+	private void saveToHistory(Context context,Contact c){
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("hh-mm-ss");
+		String hdate = sdf.format(date);
+		String htime = sdf2.format(date);
+		HistorySQLite db = DataBaseFactoryUtil.createHistoryDB(context);
+		
+		SharedPreferences share = context.getSharedPreferences(Constants.SPS_FORWARD,context.MODE_WORLD_WRITEABLE);
+		String fnumber = share.getString(Constants.SPS_FORWARD_NUMBER, "");
+		
+		db.insert(c.getContactName(), c.getContactNumber(), hdate, htime, fnumber);
 	}
 
 }

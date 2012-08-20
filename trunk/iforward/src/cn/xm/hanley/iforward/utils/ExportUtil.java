@@ -63,7 +63,7 @@ public class ExportUtil {
 			}
 			sb.append(path);
 			sb.append("转接历史[");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			String result = sdf.format(date);
 			sb.append(result);
