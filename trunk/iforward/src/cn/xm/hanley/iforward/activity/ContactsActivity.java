@@ -11,6 +11,7 @@ import cn.xm.hanley.iforward.utils.ContactsUtil;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -74,9 +75,6 @@ public class ContactsActivity extends ListActivity {
 					if (0 == size) {
 						Toast.makeText(getApplication(),getResources().getString(R.string.tip_no_item_selected),Toast.LENGTH_SHORT).show();
 					}else{
-						
-						SharedPreferences share = getSharedPreferences(Constants.SPS_COMPLETE_PROGRESS,MODE_WORLD_READABLE);
-						share.edit().putBoolean(Constants.SPS_CONTACT_FLAG, true).commit();
 						setResult(RESULT_OK);
 						finish();
 					}

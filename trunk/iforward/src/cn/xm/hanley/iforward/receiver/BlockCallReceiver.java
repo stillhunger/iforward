@@ -62,6 +62,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 			if(null == al || al.size() == 0){
 				return;
 			}
+			//FIXME 需要修改为DB读取
 			for(Contact c:al){
 				Log.d("ContactName-->", c.getContactName());
 				Log.d("ContactNumber-->", c.getContactNumber());

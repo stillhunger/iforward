@@ -11,8 +11,12 @@ import cn.xm.hanley.iforward.domain.History;
 import cn.xm.hanley.iforward.sqlite.HistorySQLite;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
+import cn.xm.hanley.iforward.utils.ExportUtil;
 import cn.xm.hanley.iforward.utils.HistoryScanner;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,10 +44,9 @@ import android.widget.Toast;
 public class HistoryFragment extends ListFragment {
 	
 	private static final String TAG = "HistoryFragment";
-	ArrayList<History> selectedContacts;
 	private Button export;
 	private Button clear;
-	
+	ArrayList<History>  historyData;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,13 +81,10 @@ public class HistoryFragment extends ListFragment {
 			
 			switch(v.getId()){
 			case R.id.export:
-				
+				tipExport(getActivity());
 				break;
 			case R.id.clear:
-				HistorySQLite history = DataBaseFactoryUtil.createHistoryDB(getActivity());
-				history.deleteAll();
-				Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_REFRESH);
-				msg.sendToTarget();
+				tipClear(getActivity());
 				break;
 			default:
 				Log.i(TAG, "HistoryFragment btnOnClickListener switch default");
@@ -94,11 +94,54 @@ public class HistoryFragment extends ListFragment {
 		
 	};
 	
-	@SuppressWarnings("unchecked")
+	
+    public  void tipClear(Context context) {
+    	
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);   
+        builder.setTitle(context.getResources().getString(R.string.tip));   
+        builder.setMessage(context.getResources().getString(R.string.tip_clear));   
+        builder.setPositiveButton(context.getResources().getString(R.string.ok),   
+                new DialogInterface.OnClickListener() {   
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    	Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_REFRESH);
+        				msg.sendToTarget();
+                    }   
+                });   
+        builder.setNegativeButton(context.getResources().getString(R.string.cancle),   
+                new DialogInterface.OnClickListener() {   
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    	
+                    }   
+                });
+        builder.show();   
+    }
+    
+    
+    public  void tipExport(Context context) {
+    	String fileName = ExportUtil.newFileName();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);   
+        builder.setTitle(context.getResources().getString(R.string.tip));   
+        builder.setMessage(context.getResources().getString(R.string.tip_history_export_to)+fileName+"?");   
+        builder.setPositiveButton(context.getResources().getString(R.string.ok),   
+                new DialogInterface.OnClickListener() {   
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    	Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_EXPORT_SDCARD);
+        				msg.sendToTarget();
+                    }   
+                });   
+        builder.setNegativeButton(context.getResources().getString(R.string.cancle),   
+                new DialogInterface.OnClickListener() {   
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    	
+                    }   
+                });
+        builder.show();   
+    }
+	
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		HashMap<String,String> hm = (HashMap<String, String>) this.getListView().getItemAtPosition(position);
 		
 	}
 	
@@ -115,7 +158,6 @@ public class HistoryFragment extends ListFragment {
 	
 	
 	
-	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler(){
 
 		@Override
@@ -136,11 +178,20 @@ public class HistoryFragment extends ListFragment {
 					m.put("historyTransferred",getResources().getString(R.string.transferred_to)+":"+h.getHtransfer());
 					data.add(m);
 				}
+				historyData = hsy;
 				showHistory(data);
 				break;
 			case Constants.RESPONSE_CODE_SHOW_REFRESH:
+				HistorySQLite history = DataBaseFactoryUtil.createHistoryDB(getActivity());
+				history.deleteAll();
 				data.clear();
 				showHistory(data);
+				break;
+			case Constants.RESPONSE_CODE_EXPORT_SDCARD:
+				boolean flag = ExportUtil.saveHistoryToSDCard(historyData);
+				if(flag){
+					Toast.makeText(getActivity(), getResources().getString(R.string.tip_export_success), Toast.LENGTH_SHORT).show();
+				}
 				break;
 			}
 			

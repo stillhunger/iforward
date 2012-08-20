@@ -51,24 +51,24 @@ public class MainActivity extends Activity {
     
     @SuppressLint("WorldReadableFiles")
 	private void init(){
-    	SharedPreferences share = this.getSharedPreferences(Constants.SPS_COMPLETE_PROGRESS,MODE_WORLD_READABLE);
-    	boolean number_flag = share.getBoolean(Constants.SPS_NUMBER_FLAG, false);
-    	boolean contact_flag = share.getBoolean(Constants.SPS_CONTACT_FLAG, false);
-    	if(number_flag){
-    		tip_number.setText(getResources().getString(R.string.tips_complete));
-    		tip_number.setTextColor(Color.BLUE);
-    	}else{
-    		tip_number.setText(getResources().getString(R.string.tips_no_complete));
-    		tip_number.setTextColor(Color.RED);
-    	}
-    	
-    	if(contact_flag){
-    		tip_flist.setText(getResources().getString(R.string.tips_complete));
-    		tip_flist.setTextColor(Color.BLUE);
-    	}else{
-    		tip_flist.setText(getResources().getString(R.string.tips_no_complete));
-    		tip_flist.setTextColor(Color.RED);
-    	}
+//    	SharedPreferences share = this.getSharedPreferences(Constants.SPS_COMPLETE_PROGRESS,MODE_WORLD_READABLE);
+//    	boolean number_flag = share.getBoolean(Constants.SPS_NUMBER_FLAG, false);
+//    	boolean contact_flag = share.getBoolean(Constants.SPS_CONTACT_FLAG, false);
+//    	if(number_flag){
+//    		tip_number.setText(getResources().getString(R.string.tips_complete));
+//    		tip_number.setTextColor(Color.BLUE);
+//    	}else{
+//    		tip_number.setText(getResources().getString(R.string.tips_no_complete));
+//    		tip_number.setTextColor(Color.RED);
+//    	}
+//    	
+//    	if(contact_flag){
+//    		tip_flist.setText(getResources().getString(R.string.tips_complete));
+//    		tip_flist.setTextColor(Color.BLUE);
+//    	}else{
+//    		tip_flist.setText(getResources().getString(R.string.tips_no_complete));
+//    		tip_flist.setTextColor(Color.RED);
+//    	}
     }
     
     private void findViewByIds(){

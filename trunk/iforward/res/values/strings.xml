@@ -27,8 +27,20 @@
     <string name="title_fnumber">转接号码</string>
     <string name="title_fpeople">转接对象</string>
     <string name="title_history">转接历史</string>
-	<string name="transferred_to">来电已转至</string>
+	<string name="transferred_to">来电被转至</string>
     <string name="delete">删除</string>
     <string name="export">导出</string>
     <string name="clear">清除</string>
+    <string name="manually_add">手动添加号码</string>
+    <string name="contacts_add">从联系人选择</string>
+    <string name="add_forward_people">添加转接对象</string>
+    <string name="tip">友情提示</string>
+    <string name="tip_clear">清除转接历史？</string>
+    <string name="memo">备注名称</string>
+    <string name="mobile_tel_num">手机|电话</string>
+    <string name="tip_number_settings">未设置号码</string>
+    <string name="number_settings">号码设置</string>
+    <string name="disable_forward_number">禁用号码转接</string>
+    <string name="tip_history_export_to">确定将历史记录导出至:</string>
+    <string name="tip_export_success">导出成功</string>
 </resources>

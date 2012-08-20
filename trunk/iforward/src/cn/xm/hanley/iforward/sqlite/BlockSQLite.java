@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * @Description: 联系人拦截列表
+ * @Description: 转接列表
  * @author HanleyTowne
  * @email  tanghly@gmail.com
  * @date   2012-8-16上午11:05:33

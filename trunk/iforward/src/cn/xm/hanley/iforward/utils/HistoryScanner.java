@@ -24,7 +24,6 @@ import android.provider.ContactsContract.PhoneLookup;
 public class HistoryScanner extends Thread {
 
 	private Handler handler;
-
 	private Context context;
 
 	public HistoryScanner(Handler handler, Context context) {
