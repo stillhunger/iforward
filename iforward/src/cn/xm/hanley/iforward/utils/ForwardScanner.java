@@ -42,7 +42,7 @@ public class ForwardScanner extends Thread {
 	@SuppressLint("NewApi")
 	public void loadForward() {
 		BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(context);
-		ArrayList<Contact> contacts = db.queryForwardContact();
+		ArrayList<Contact> contacts = db.queryAllForwardContact();
 		if(null != contacts){
 			Message msg  = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_FORWARD, contacts);
 			msg.sendToTarget();

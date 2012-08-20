@@ -91,7 +91,7 @@ public class BlockSQLite extends SQLiteOpenHelper {
 	 * @return ArrayList<Contact>
 	 * @throws
 	 */
-	public ArrayList<Contact> queryForwardContact(){
+	public ArrayList<Contact> queryAllForwardContact(){
 		ArrayList<Contact> contactList = new ArrayList<Contact>();
 		try {
 			SQLiteDatabase db = this.getReadableDatabase();
@@ -111,6 +111,36 @@ public class BlockSQLite extends SQLiteOpenHelper {
 			Log.e(TAG , e.toString());
 		}
 		return contactList;
+	}
+	
+	
+	/**
+	 * 根据号码查询拦截对象
+	 * @param number
+	 * @return
+	 * @return Contact
+	 * @throws
+	 */
+	public Contact queryForwardContactByNumber(String number){
+		Contact contact = null;
+		try {
+			SQLiteDatabase db = this.getReadableDatabase();
+			String [] columns = new String[]{"cname","cnumber"};
+			Cursor cursor = db.query("block_contacts", columns, "cnumber=?", new String[]{number}, null,null, null);
+			while(cursor.moveToLast()){
+				contact = new Contact();
+				String cname = cursor.getString(0);
+				String cnumber = cursor.getString(1);
+				contact.setContactName(cname);
+				contact.setContactNumber(cnumber);
+				break;
+			}
+			cursor.close();
+			db.close();
+		} catch (Exception e) {
+			Log.e(TAG , e.toString());
+		}
+		return contact;
 	}
 
 }

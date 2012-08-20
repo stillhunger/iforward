@@ -39,7 +39,6 @@ public class HistoryScanner extends Thread {
 	@SuppressLint("NewApi")
 	public void loadHistory() {
 		HistorySQLite db = DataBaseFactoryUtil.createHistoryDB(context);
-		db.insert("Hanley", "18687876545", "2012-08-16", "10:08:12","110");
 		ArrayList<History> hlist = db.queryHistory();
 		if(null != hlist){
 			Message msg  = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_HISTORY, hlist);
