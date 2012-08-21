@@ -46,8 +46,7 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabswipe_main);
-        // Create the adapter that will return a fragment for each of the three primary sections
-        // of the app.
+        
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the action bar.
@@ -58,9 +57,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // When swiping between different sections, select the corresponding tab.
-        // We can also use ActionBar.Tab#select() to do this if we have a reference to the
-        // Tab.
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -70,9 +66,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by the adapter.
-            // Also specify this Activity object, which implements the TabListener interface, as the
-            // listener for when this tab is selected.
         	
             actionBar.addTab(
                     actionBar.newTab()
@@ -103,10 +96,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
-     * sections of the app.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -115,11 +104,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public Fragment getItem(int i) {
-//            Fragment fragment = new DummySectionFragment();
-//            Bundle args = new Bundle();
-//            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-//            fragment.setArguments(args);
-//            return fragment;
             
             Fragment newFragment = null;
             switch(i){
@@ -135,13 +119,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
 	    	default:
 	    		break;
 	    	}
-	    	
-            
-//	    	android.app.FragmentManager fm = TabSwipeMain.this.getFragmentManager();
-//	    	FragmentTransaction ft = fm.beginTransaction();
-//	    	ft.replace(1, newFragment);
-//	    	ft.replace(R.id.container, newFragment);
-//	    	ft.commit();
 	    	
 	    	return newFragment;
         }
@@ -162,23 +139,4 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
         }
     }
 
-    /**
-     * A dummy fragment representing a section of the app, but that simply displays dummy text.
-     */
-    public static class DummySectionFragment extends Fragment {
-        public DummySectionFragment() {
-        }
-
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            Bundle args = getArguments();
-            textView.setText(Integer.toString(args.getInt(ARG_SECTION_NUMBER)));
-            return textView;
-        }
-    }
 }

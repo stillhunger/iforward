@@ -13,6 +13,7 @@ import cn.xm.hanley.iforward.utils.ContactScanner;
 import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
 import cn.xm.hanley.iforward.utils.ExportUtil;
 import cn.xm.hanley.iforward.utils.HistoryScanner;
+import cn.xm.hanley.iforward.utils.TipsUtil;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -81,6 +82,10 @@ public class HistoryFragment extends ListFragment {
 			
 			switch(v.getId()){
 			case R.id.export:
+				if(null == historyData || historyData.size() == 0){
+					TipsUtil.tipToast(getActivity(), R.string.tip_export_nodata);
+					return;
+				}
 				tipExport(getActivity());
 				break;
 			case R.id.clear:
@@ -154,10 +159,6 @@ public class HistoryFragment extends ListFragment {
 	}
 	
 	
-	
-	
-	
-	
 	private Handler handler = new Handler(){
 
 		@Override
@@ -190,7 +191,7 @@ public class HistoryFragment extends ListFragment {
 			case Constants.RESPONSE_CODE_EXPORT_SDCARD:
 				boolean flag = ExportUtil.saveHistoryToSDCard(historyData);
 				if(flag){
-					Toast.makeText(getActivity(), getResources().getString(R.string.tip_export_success), Toast.LENGTH_SHORT).show();
+					TipsUtil.tipToast(getActivity(), R.string.tip_export_success);
 				}
 				break;
 			}

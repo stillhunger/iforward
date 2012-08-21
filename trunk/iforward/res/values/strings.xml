@@ -43,4 +43,5 @@
     <string name="disable_forward_number">禁用号码转接</string>
     <string name="tip_history_export_to">确定将历史记录导出至:</string>
     <string name="tip_export_success">导出成功</string>
+    <string name="tip_export_nodata">无数据导出</string>
 </resources>
