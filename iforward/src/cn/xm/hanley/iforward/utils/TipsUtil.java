@@ -26,7 +26,7 @@ public class TipsUtil {
     public static void shwoAbout(Context context) {   
         AlertDialog.Builder builder = new AlertDialog.Builder(context);   
         builder.setTitle(context.getResources().getString(R.string.about));   
-        builder.setMessage(context.getResources().getString(R.string.app_introduction));   
+        builder.setMessage(context.getResources().getString(R.string.app_intrudoction));   
         builder.setPositiveButton(context.getResources().getString(R.string.ok),   
                 new DialogInterface.OnClickListener() {   
                     public void onClick(DialogInterface dialog, int whichButton) {

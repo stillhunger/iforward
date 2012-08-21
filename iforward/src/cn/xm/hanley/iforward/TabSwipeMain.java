@@ -1,31 +1,21 @@
 package cn.xm.hanley.iforward;
 
+import cn.xm.hanley.iforward.activity.AboutActivity;
 import cn.xm.hanley.iforward.activity.R;
-import cn.xm.hanley.iforward.activity.R.id;
-import cn.xm.hanley.iforward.activity.R.layout;
-import cn.xm.hanley.iforward.activity.R.menu;
-import cn.xm.hanley.iforward.activity.R.string;
-import cn.xm.hanley.iforward.fragment.ContactFragment;
 import cn.xm.hanley.iforward.fragment.CustomFragment;
 import cn.xm.hanley.iforward.fragment.ForwardFragment;
 import cn.xm.hanley.iforward.fragment.HistoryFragment;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListener {
 
@@ -83,6 +73,17 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
     
 
     @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()){
+    	case R.id.menu_about:
+    		Intent intent = new Intent(this,AboutActivity.class);
+    		startActivity(intent);
+    		break;
+    	}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
