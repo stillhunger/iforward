@@ -143,4 +143,32 @@ public class BlockSQLite extends SQLiteOpenHelper {
 		return contact;
 	}
 
+	
+	
+	/**
+	 * 是否包含此号码
+	 * @param number
+	 * @return
+	 * @return boolean
+	 * @throws
+	 */
+	public boolean isContainNumber(String number){
+		boolean flag = false;
+		try {
+			SQLiteDatabase db = this.getReadableDatabase();
+			String [] columns = new String[]{"cname","cnumber"};
+			Cursor cursor = db.query("block_contacts", columns, "cnumber=?", new String[]{number}, null,null, null);
+			while(cursor.moveToLast()){
+				flag = true;
+				break;
+			}
+			cursor.close();
+			db.close();
+		} catch (Exception e) {
+			flag = false;
+			Log.e(TAG , e.toString());
+		}
+		return flag;
+	}
+	
 }

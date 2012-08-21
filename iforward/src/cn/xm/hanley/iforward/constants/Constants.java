@@ -33,6 +33,9 @@ public class Constants {
 	/**导出到SDCARD*/
 	public static final int RESPONSE_CODE_EXPORT_SDCARD = 5;
 	
+	/**加载进度条*/
+	public static final int RESPONSE_CODE_PROGRESS_UPDATE = 6;
+	
 	
 	/********************SharedPreferences********************/
 	

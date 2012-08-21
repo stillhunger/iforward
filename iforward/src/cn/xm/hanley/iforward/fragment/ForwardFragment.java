@@ -85,9 +85,7 @@ public class ForwardFragment extends ListFragment {
 				clickOperation();
 				break;
 			}
-			
 		}
-		
 	};
 	
 	
@@ -118,11 +116,7 @@ public class ForwardFragment extends ListFragment {
 				break;
 			}
 		}
-		
 	};
-	
-	
-	
 	
 	
 	@Override
@@ -166,7 +160,10 @@ public class ForwardFragment extends ListFragment {
 				contactName = "未知";
 			}
 			BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(getActivity());
-			db.insert(contactName, contactNumber);
+			boolean flag = db.isContainNumber(contactNumber);//如果DB中已经存在则不添加
+			if(!flag){
+				db.insert(contactName, contactNumber);
+			}
 		}
 		ForwardScanner cs = new ForwardScanner(handler,getActivity());
 		cs.start();
@@ -175,7 +172,11 @@ public class ForwardFragment extends ListFragment {
 	private void saveToDatabase(ArrayList<Contact> clist){
 		BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(getActivity());
 		for(Contact c:clist){
-			db.insert(c.getContactName(), c.getContactNumber());
+			//如果DB中已经存在则不添加
+			boolean flag = db.isContainNumber(c.getContactNumber());
+			if(!flag){
+				db.insert(c.getContactName(), c.getContactNumber());
+			}
 		}
 		ForwardScanner cs = new ForwardScanner(handler,getActivity());
 		cs.start();
@@ -185,8 +186,6 @@ public class ForwardFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-//		SimpleAdapter sa = (SimpleAdapter)this.getListAdapter();
-//		HashMap<String,String> hm = (HashMap<String, String>) this.getListView().getItemAtPosition(position);
 		
 	}
 	

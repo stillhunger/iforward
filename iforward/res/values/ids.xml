@@ -42,4 +42,5 @@
 	<item name="display_number" type="id"/>
 	<item name="manually_number" type="id" />
 	<item name="memo" type="id" />
+	<item name="scan_progress" type="id"/>
 </resources>

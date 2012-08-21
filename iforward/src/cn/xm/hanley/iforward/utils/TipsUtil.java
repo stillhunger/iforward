@@ -4,33 +4,17 @@ import cn.xm.hanley.iforward.activity.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
-/** 
- * @ClassName: TipsUtil 
- * @Description: 提示工具类
- * @author TANGHL
- * @date 2011-5-17 下午04:07:41 
- * Copyright (c) By ANTROU LTD. 2011 
+
+/**
+ * @author HanleyTowne
+ * @email  tanghly@gmail.com
+ * @date   2012-8-21上午10:14:43
+ * @Google+ http://gplus.to/hanleytowne
  */
 public class TipsUtil {
 
-	private static TipsUtil instance;
-	
-	private TipsUtil(){
-		
-	}
-	
-	public static TipsUtil getInstance() {
-		if(instance==null){
-			synchronized (TipsUtil.class) {
-				if(instance == null){
-					instance = new TipsUtil();
-				}
-			}
-		}
-		return instance;
-	}
-	
 	
     /**
      * 
@@ -39,7 +23,7 @@ public class TipsUtil {
     * @return void 
     * @throws
      */
-    public  void shwoAbout(Context context) {   
+    public static void shwoAbout(Context context) {   
         AlertDialog.Builder builder = new AlertDialog.Builder(context);   
         builder.setTitle(context.getResources().getString(R.string.about));   
         builder.setMessage(context.getResources().getString(R.string.app_introduction));   
@@ -51,5 +35,8 @@ public class TipsUtil {
         builder.show();   
     } 
     
+    public static void tipToast(Context context,int source){
+    	Toast.makeText(context, context.getResources().getString(source), Toast.LENGTH_SHORT).show();
+    }
 	
 }

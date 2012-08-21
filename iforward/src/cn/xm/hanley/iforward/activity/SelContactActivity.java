@@ -6,7 +6,6 @@ import java.util.HashMap;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 
-
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -15,8 +14,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 
 /**
@@ -28,17 +27,23 @@ import android.widget.Toast;
  */
 public class SelContactActivity extends ListActivity {
 
-	ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
+	private ProgressBar progressBar;
 	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_sel_contact);
+		findViewByIds();
 		ContactScanner cs = new ContactScanner(handler,this);
 		cs.start();
 		
 	}
+	
+	private void findViewByIds(){
+		progressBar = (ProgressBar)findViewById(R.id.scan_progress);
+	}
+	
 	
 	private SimpleAdapter simapleAdapter;
 
@@ -56,20 +61,19 @@ public class SelContactActivity extends ListActivity {
 	}
 
 	
-	private void showContacts(){
-		
-		if(null == simapleAdapter){
-			String[] itemName = new String[]{ "contactName","contactNumber"};
-			int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber};
-			simapleAdapter = new SimpleAdapter(this, data,R.layout.item_sel_contact, itemName, itemValue);
-			this.setListAdapter(simapleAdapter);
-		}else{
-			simapleAdapter.notifyDataSetChanged();
-		}
+	private void showContacts(ArrayList<HashMap<String,Object>> mydata){
 
+		String[] itemName = new String[]{ "contactName","contactNumber"};
+		int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber};
+		simapleAdapter = new SimpleAdapter(this, mydata,R.layout.item_sel_contact, itemName, itemValue);
+		this.setListAdapter(simapleAdapter);
 	}
 	
-	
+	private void stepsProgress(int progress,int maxProgress){
+		progressBar.setProgress(progress);
+		progressBar.setMax(maxProgress);
+		progressBar.setVisibility(View.VISIBLE);
+	}
 	
 	private Handler handler = new Handler(){
 
@@ -79,9 +83,12 @@ public class SelContactActivity extends ListActivity {
 			
 			switch(msg.what){
 			case Constants.RESPONSE_CODE_SHOW_CONTACT:
-				HashMap<String,Object> m = (HashMap<String,Object>) msg.obj;
-				data.add(m);
-				showContacts();
+				progressBar.setVisibility(View.GONE);
+				ArrayList<HashMap<String,Object>> mydata = (ArrayList<HashMap<String,Object>>)msg.obj;
+				showContacts(mydata);
+				break;
+			case Constants.RESPONSE_CODE_PROGRESS_UPDATE:
+				stepsProgress(msg.arg1, msg.arg2);
 				break;
 			}
 		}

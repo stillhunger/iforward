@@ -11,8 +11,6 @@ import cn.xm.hanley.iforward.utils.ContactsUtil;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -38,7 +37,7 @@ public class ContactsActivity extends ListActivity {
 	private Button btnOk;
 	private Button btnCancle;
 	ArrayList<Contact> selectedContacts;
-	ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
+	private ProgressBar progressBar;
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -55,11 +54,18 @@ public class ContactsActivity extends ListActivity {
 	private void findViewByids(){
 		btnOk = (Button)findViewById(R.id.btn_ok);
 		btnCancle = (Button)findViewById(R.id.btn_cancle);
+		progressBar = (ProgressBar)findViewById(R.id.scan_progress);
 	}
 	
 	private void setListeners(){
 		btnOk.setOnClickListener(onClickListener);
 		btnCancle.setOnClickListener(onClickListener);
+	}
+	
+	private void stepsProgress(int progress, int maxProgress) {
+		progressBar.setMax(maxProgress);
+		progressBar.setProgress(progress);
+		progressBar.setVisibility(View.VISIBLE);
 	}
 	
 	private OnClickListener onClickListener = new OnClickListener(){
@@ -118,17 +124,12 @@ public class ContactsActivity extends ListActivity {
 		simapleAdapter.notifyDataSetChanged();
 	}
 	
-	private void showContacts(){
+	private void showContacts(ArrayList<HashMap<String,Object>> mydata){
 		
-		if(null == simapleAdapter){
-			String[] itemName = new String[]{ "contactName","contactNumber","lvcheck"};
-			int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber,R.id.lv_checkbox};
-			simapleAdapter = new SimpleAdapter(this, data,R.layout.item_contact, itemName, itemValue);
-			this.setListAdapter(simapleAdapter);
-		}else{
-			simapleAdapter.notifyDataSetChanged();
-		}
-
+		String[] itemName = new String[]{ "contactName","contactNumber","lvcheck"};
+		int []   itemValue =  new int[]{ R.id.contactName,R.id.contactNumber,R.id.lv_checkbox};
+		simapleAdapter = new SimpleAdapter(this, mydata,R.layout.item_contact, itemName, itemValue);
+		this.setListAdapter(simapleAdapter);
 	}
 	
 	
@@ -158,15 +159,18 @@ public class ContactsActivity extends ListActivity {
 	
 	private Handler handler = new Handler(){
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void handleMessage(Message msg) {
 			
 			switch(msg.what){
 			case Constants.RESPONSE_CODE_SHOW_CONTACT:
-				@SuppressWarnings("unchecked")
-				HashMap<String,Object> m = (HashMap<String,Object>) msg.obj;
-				data.add(m);
-				showContacts();
+				progressBar.setVisibility(View.GONE);
+				ArrayList<HashMap<String,Object>> mydata = (ArrayList<HashMap<String,Object>>)msg.obj;
+				showContacts(mydata);
+				break;
+			case Constants.RESPONSE_CODE_PROGRESS_UPDATE:
+				stepsProgress(msg.arg1, msg.arg2);
 				break;
 			}
 			
