@@ -1,18 +1,14 @@
 package cn.xm.hanley.iforward.utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.History;
 import cn.xm.hanley.iforward.sqlite.HistorySQLite;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.PhoneLookup;
 
 /**
  * 扫描历史记录
