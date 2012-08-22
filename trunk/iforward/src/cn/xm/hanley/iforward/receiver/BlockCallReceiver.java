@@ -56,7 +56,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 		init(context);
 		if (PHONE_STATE.equals(action)) {
 			String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-			Log.e(TAG, "拦截开始-state="+state);//来电的state是RINGING,挂断是IDLE
+			Log.i(TAG, "拦截开始-state="+state);//来电的state是RINGING,挂断是IDLE
 			String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 			BlockSQLite bs = DataBaseFactoryUtil.createFordwardDB(context);
 			Contact mycontact = bs.queryForwardContactByNumber(number);
