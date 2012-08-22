@@ -22,8 +22,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:theme="@style/CustomActionBar"
-            android:name="cn.xm.hanley.iforward.TabSwipeMain"
-            android:label="@string/app_name" >
+            android:name="cn.xm.hanley.iforward.TabSwipeMain" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -43,4 +43,5 @@
 	<item name="manually_number" type="id" />
 	<item name="memo" type="id" />
 	<item name="scan_progress" type="id"/>
+	<item name="title_action_bar" type="id"/>
 </resources>

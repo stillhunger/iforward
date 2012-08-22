@@ -7,6 +7,7 @@ import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 
 /**
@@ -28,13 +30,20 @@ import android.widget.SimpleAdapter;
 public class SelContactActivity extends ListActivity {
 
 	private ProgressBar progressBar;
+	private TextView titleActionBar;
 	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.list_sel_contact);
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.anction_bar);
+		
 		findViewByIds();
+		
 		ContactScanner cs = new ContactScanner(handler,this);
 		cs.start();
 		
@@ -42,6 +51,8 @@ public class SelContactActivity extends ListActivity {
 	
 	private void findViewByIds(){
 		progressBar = (ProgressBar)findViewById(R.id.scan_progress);
+		titleActionBar = (TextView)findViewById(R.id.title_action_bar);
+		titleActionBar.setText(getResources().getString(R.string.fnumber));
 	}
 	
 	
