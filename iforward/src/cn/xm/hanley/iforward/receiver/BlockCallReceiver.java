@@ -51,9 +51,12 @@ public class BlockCallReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String action = intent.getAction();
+		String type = intent.getType();
+		Log.e(TAG, "action=="+action+" || type="+type);
 		init(context);
 		if (PHONE_STATE.equals(action)) {
 			String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+			Log.e(TAG, "拦截开始-state="+state);//来电的state是RINGING,挂断是IDLE
 			String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 			BlockSQLite bs = DataBaseFactoryUtil.createFordwardDB(context);
 			Contact mycontact = bs.queryForwardContactByNumber(number);
@@ -64,8 +67,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 				cnum = cnum.replaceAll("-", "");
 				cnum = cnum.replaceAll(" ", "");
 				if(number.endsWith(cnum)){
-					block(state);
-					saveToHistory(context,mycontact);
+					block(state,mycontact,context);
 				}
 			}
 		}
@@ -78,7 +80,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 	 * @return void
 	 * @throws
 	 */
-	private void block(String state){
+	private void block(String state,Contact mycontact,Context context){
 		
 		if (state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
@@ -88,6 +90,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 				Log.e(TAG, e.toString());
 			}
 			audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+			saveToHistory(context,mycontact);
 		}
 	}
 	
@@ -105,6 +108,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 		String fnumber = share.getString(Constants.SPS_FORWARD_NUMBER, "");
 		
 		db.insert(c.getContactName(), c.getContactNumber(), hdate, htime, fnumber);
+		
 	}
 
 }
