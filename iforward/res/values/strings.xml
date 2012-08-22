@@ -21,6 +21,7 @@
     <string name="google">Google+: http://gplus.to/hanleytowne</string>
     <string name="twitter">twitter: http://www.facebook.com/hanleytowne</string>
     <string name="facebook">facebook: http://www.facebook.com/hanleytowne</string>
+     <string name="weibo">新浪微博: http://weibo.com/tanghanlin</string>
     
     <string name="custom_block">手动添加</string>
     <string name="contact_block">从联系人选择</string>

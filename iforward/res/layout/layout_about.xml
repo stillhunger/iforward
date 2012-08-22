@@ -55,7 +55,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/twitter"
+            android:text="@string/weibo"
             android:textColor="#000000" />
 
         <TextView
