@@ -17,6 +17,13 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * 主界面
+ * @author HanleyTowne
+ * @email  tanghly@gmail.com
+ * @date   2012-8-22下午3:19:18
+ * @Google+ http://gplus.to/hanleytowne
+ */
 public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListener {
 
     /**
@@ -36,14 +43,13 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabswipe_main);
-        
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // Set up the ViewPager with the sections adapter.
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -64,24 +70,6 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_title, menu);
-        return true;
-    }
-
-    
-
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-    	switch(item.getItemId()){
-    	case R.id.menu_about:
-    		Intent intent = new Intent(this,AboutActivity.class);
-    		startActivity(intent);
-    		break;
-    	}
-		return super.onOptionsItemSelected(item);
-	}
 
 	@Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {

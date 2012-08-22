@@ -10,6 +10,7 @@ import cn.xm.hanley.iforward.utils.ContactsUtil;
 
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -38,23 +40,30 @@ public class ContactsActivity extends ListActivity {
 	private Button btnCancle;
 	ArrayList<Contact> selectedContacts;
 	private ProgressBar progressBar;
+	private TextView titleActionbar;
 	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_contact);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.setCustomView(R.layout.anction_bar);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		
 		findViewByids();
 		setListeners();
+		
 		ContactScanner cs = new ContactScanner(handler,this);
 		cs.start();
-		
 	}
 	
 	private void findViewByids(){
 		btnOk = (Button)findViewById(R.id.btn_ok);
 		btnCancle = (Button)findViewById(R.id.btn_cancle);
 		progressBar = (ProgressBar)findViewById(R.id.scan_progress);
+		titleActionbar = (TextView) findViewById(R.id.title_action_bar);
 	}
 	
 	private void setListeners(){
@@ -111,6 +120,17 @@ public class ContactsActivity extends ListActivity {
 		HashMap<String,Object> m = (HashMap<String,Object>)sa.getItem(position);
 		m.put("lvcheck", !ck.isChecked());
 		sa.notifyDataSetChanged();
+		
+		//ActionBar显示已经选择数量
+		currentSelectedContants();
+		int selectNum = selectedContacts.size();
+		String actionBarTipName = getResources().getString(R.string.flist);
+		StringBuffer sb = new StringBuffer();
+		sb.append(actionBarTipName);
+		sb.append("(");
+		sb.append(selectNum);
+		sb.append(")");
+		titleActionbar.setText(sb.toString());
 	}
 
 
