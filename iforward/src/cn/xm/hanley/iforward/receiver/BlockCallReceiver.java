@@ -99,7 +99,7 @@ public class BlockCallReceiver extends BroadcastReceiver {
 	private void saveToHistory(Context context,Contact c){
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("hh-mm-ss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
 		String hdate = sdf.format(date);
 		String htime = sdf2.format(date);
 		HistorySQLite db = DataBaseFactoryUtil.createHistoryDB(context);
