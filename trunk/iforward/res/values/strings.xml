@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, IRefusedActivity!</string>
-    <string name="app_name">iForward</string>
+    <string name="app_name">我转接</string>
     <string name="no_data">无可显示数据</string>
     <string name="ok">确定</string>
     <string name="cancle">取消</string>
