@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, IRefusedActivity!</string>
-    <string name="app_name">呼转吧</string>
+    <string name="app_name">iforward</string>
     <string name="no_data">无可显示数据</string>
     <string name="ok">确定</string>
     <string name="cancle">取消</string>
@@ -16,13 +16,14 @@
     <string name="tips_complete">已完成</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
-    <string name="app_intrudoction">来电拦截的手机软件，目前来说都比较多，而且功能远远不仅仅局限于拦截号码的范畴了，软件开发商早就将拦截功能作为软件的一个小功能附加在自己的软件中，这方面比较有知名度的，例如：360手机卫士、安管家。他们研发的产品不仅仅是拦截号码那么简单，如杀毒功能，而且还是云查杀，流量监控，内存清理，防盗功能等。可以说他们做的非常完善、优秀了。但是由于360手机卫士又或者是安管家，两款软件的功能是在太多了，加上手机还安装了QQ、微薄一大堆有后台服务的软件，手机内存所剩无几，我时常说手机卡的P暴，这让我非常惆怅，身边的同事朋友都有同感，于是萌发仅仅开发一个有拦截来电的功能的小软件，更准确的说应该是转接，因为让用户决定转接到哪个号码，功能会扩大化，可以用于拦截骚扰，也可以转移到你家的座机上，家人帮你接紧急电话。不是每个人的需求都一样，既然想到了我就开始这么干了！</string>
+    <string name="app_intrudoction">来电拦截的手机软件，目前来说都比较多，而且功能远远不仅仅局限于拦截号码的范畴了，软件开发商早就将拦截功能作为软件的一个小功能附加在自己的软件中，这方面比较有知名度的，例如：360手机卫士、安管家。他们研发的产品不仅仅是拦截号码那么简单，如杀毒功能，而且还是云查杀，流量监控，内存清理，防盗功能等。可以说他们做的非常完善、优秀了。但是由于360手机卫士又或者是安管家，两款软件的功能是在太多了，加上手机还安装了QQ、微薄一大堆有后台服务的软件，手机内存所剩无几，我时常说手机卡的P暴，这让我非常惆怅，身边的同事朋友都有同感，于是萌发仅仅开发一个有拦截来电的功能的小软件，更准确的说应该是转接，因为让用户决定转接到哪个号码，功能会扩大化，可以用于拦截骚扰，也可以转移到你家的座机上，家人帮你接紧急电话。不是每个人的需求都一样，既然想到了我就开始这么干了！另外这个app是开源的!</string>
     <string name="contact">联系方式</string>
     <string name="email">Gmail: tanghly@gmail.com</string>
     <string name="google">Google+: http://gplus.to/hanleytowne</string>
     <string name="twitter">twitter: http://www.facebook.com/hanleytowne</string>
     <string name="facebook">facebook: http://www.facebook.com/hanleytowne</string>
-     <string name="weibo">新浪微博: http://weibo.com/tanghanlin</string>
+    <string name="weibo">新浪微博: http://weibo.com/tanghanlin</string>
+    <string name="source_code">源码地址:</string> 
     
     <string name="custom_block">手动添加</string>
     <string name="contact_block">从联系人选择</string>
