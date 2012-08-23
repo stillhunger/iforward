@@ -8,6 +8,7 @@
     <string name="cancle">取消</string>
     <string name="fnumber">转接号码</string>
     <string name="flist">拦截对象</string>
+    <string name="flist_selected">拦截对象(0)</string>
     <string name="tip_no_content">需录入转接号码</string>
     <string name="tip_no_item_selected">未曾选择</string>
     <string name="tips_main">你需要下面两个步骤完成软件设置</string>
@@ -34,6 +35,7 @@
     <string name="clear">清除</string>
     <string name="manually_add">手动添加号码</string>
     <string name="contacts_add">从联系人选择</string>
+    <string name="call_logs">从通话记录选择</string>
     <string name="add_forward_people">添加转接对象</string>
     <string name="tip">友情提示</string>
     <string name="tip_clear">清除转接历史？</string>

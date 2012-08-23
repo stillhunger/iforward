@@ -74,14 +74,11 @@ public class ContactScanner extends Thread {
 						map.put("contactNumber", contacNumber);
 						map.put("lvcheck", false);
 						data.add(map);
-//						Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_SHOW_CONTACT, map);
-//						msg.sendToTarget();
 						Message msg = handler.obtainMessage(Constants.RESPONSE_CODE_PROGRESS_UPDATE);
 						msg.arg1 = flag;
 						msg.arg2 = cursor.getCount();
 						msg.sendToTarget();
 					}
-					// FIXME 通知显示需要优化
 				}
 				phones.close();
 			}

@@ -9,6 +9,7 @@ import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.domain.History;
 import cn.xm.hanley.iforward.sqlite.HistorySQLite;
+import cn.xm.hanley.iforward.utils.CallLogScanner;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
 import cn.xm.hanley.iforward.utils.ExportUtil;
