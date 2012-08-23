@@ -47,8 +47,8 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayShowHomeEnabled(false);
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayShowHomeEnabled(false);
         
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -69,6 +69,28 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
                             .setTabListener(this));
         }
     }
+
+    
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_title, menu);
+        return true;
+	}
+
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case R.id.menu_about:
+			Intent intent = new Intent(this,AboutActivity.class);
+			startActivity(intent);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 
 
 	@Override
