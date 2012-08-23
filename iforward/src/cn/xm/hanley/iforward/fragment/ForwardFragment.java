@@ -3,6 +3,7 @@ package cn.xm.hanley.iforward.fragment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.xm.hanley.iforward.activity.CallLogsActivity;
 import cn.xm.hanley.iforward.activity.ContactsActivity;
 import cn.xm.hanley.iforward.activity.R;
 import cn.xm.hanley.iforward.activity.SelContactActivity;
@@ -94,6 +95,7 @@ public class ForwardFragment extends ListFragment {
 		String contents[] = {
 			getResources().getString(R.string.manually_add),
 			getResources().getString(R.string.contacts_add),
+			getResources().getString(R.string.call_logs),
 		};
 		
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
@@ -106,12 +108,18 @@ public class ForwardFragment extends ListFragment {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
+			Intent intent = null;
+			
 			switch(which){
 			case 0:
 				manuallyAdd();
 				break;
 			case 1:
-				Intent intent = new Intent(getActivity(),ContactsActivity.class);
+				intent = new Intent(getActivity(),ContactsActivity.class);
+				startActivityForResult(intent, CODE_REQUEST_CONTACT);
+				break;
+			case 2:
+				intent = new Intent(getActivity(),CallLogsActivity.class);
 				startActivityForResult(intent, CODE_REQUEST_CONTACT);
 				break;
 			}

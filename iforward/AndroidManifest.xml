@@ -31,6 +31,7 @@
         <activity android:name=".ContactsActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".SelContactActivity" />
+        <activity android:name=".CallLogsActivity" />
         
 
         <receiver android:name="cn.xm.hanley.iforward.receiver.BlockCallReceiver" >
