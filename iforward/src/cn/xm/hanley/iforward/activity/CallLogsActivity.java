@@ -6,7 +6,6 @@ import java.util.HashMap;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.utils.CallLogScanner;
-import cn.xm.hanley.iforward.utils.ContactScanner;
 import cn.xm.hanley.iforward.utils.ContactsUtil;
 
 
