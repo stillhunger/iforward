@@ -119,13 +119,13 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
             Fragment newFragment = null;
             switch(i){
 	    	case 0:
-	    		newFragment = new HistoryFragment();
+	    		newFragment = new CustomFragment();
 	    		break;
 			case 1:
 				newFragment = new ForwardFragment();
 	    		break;
 			case 2:
-				newFragment = new CustomFragment();
+				newFragment = new HistoryFragment();
 	    		break;
 	    	default:
 	    		break;
@@ -142,9 +142,9 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0: return getString(R.string.forward_history).toUpperCase();
+            	case 0: return getString(R.string.forward_number).toUpperCase();
                 case 1: return getString(R.string.forward_object).toUpperCase();
-                case 2: return getString(R.string.forward_number).toUpperCase();
+                case 2: return getString(R.string.forward_history).toUpperCase();
             }
             return null;
         }
