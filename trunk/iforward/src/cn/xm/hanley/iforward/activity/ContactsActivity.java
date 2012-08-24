@@ -124,7 +124,7 @@ public class ContactsActivity extends ListActivity {
 		//ActionBar显示已经选择数量
 		currentSelectedContants();
 		int selectNum = selectedContacts.size();
-		String actionBarTipName = getResources().getString(R.string.flist);
+		String actionBarTipName = getResources().getString(R.string.forward_object);
 		StringBuffer sb = new StringBuffer();
 		sb.append(actionBarTipName);
 		sb.append("(");

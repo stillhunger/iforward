@@ -82,12 +82,12 @@ public class CustomFragment extends Fragment{
 		
 		String contents[] = {
 			getResources().getString(R.string.manually_add),
-			getResources().getString(R.string.contacts_add),
+			getResources().getString(R.string.contacts_add_number),
 			getResources().getString(R.string.disable_forward_number),
 		};
 		
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
-		b.setTitle(getResources().getString(R.string.title_fnumber));
+		b.setTitle(getResources().getString(R.string.forward_number));
 		b.setItems(contents, itemSelected);
 		b.show();
 	}
@@ -159,7 +159,7 @@ public class CustomFragment extends Fragment{
 		Intent intent = new Intent(Intent.ACTION_CALL);
 		intent.setData(Uri.parse("tel:%23%2367%23"));
 		getActivity().startActivity(intent);
-		displayNumber.setText(getResources().getString(R.string.tip_number_settings));
+		displayNumber.setText(getResources().getString(R.string.tip_no_number_settings));
 		numberSaveSPS("");
 	}
 	

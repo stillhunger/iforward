@@ -52,7 +52,7 @@ public class SelContactActivity extends ListActivity {
 	private void findViewByIds(){
 		progressBar = (ProgressBar)findViewById(R.id.scan_progress);
 		titleActionBar = (TextView)findViewById(R.id.title_action_bar);
-		titleActionBar.setText(getResources().getString(R.string.fnumber));
+		titleActionBar.setText(getResources().getString(R.string.forward_number));
 	}
 	
 	
