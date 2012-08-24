@@ -94,12 +94,12 @@ public class ForwardFragment extends ListFragment {
 		
 		String contents[] = {
 			getResources().getString(R.string.manually_add),
-			getResources().getString(R.string.contacts_add),
-			getResources().getString(R.string.call_logs),
+			getResources().getString(R.string.contacts_add_number),
+			getResources().getString(R.string.calllogs_add_number),
 		};
 		
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
-		b.setTitle(getResources().getString(R.string.title_fpeople));
+		b.setTitle(getResources().getString(R.string.forward_object));
 		b.setItems(contents, itemSelected);
 		b.show();
 	}

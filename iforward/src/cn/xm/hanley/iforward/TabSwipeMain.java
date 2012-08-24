@@ -142,9 +142,9 @@ public class TabSwipeMain extends FragmentActivity implements ActionBar.TabListe
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0: return getString(R.string.title_history).toUpperCase();
-                case 1: return getString(R.string.title_fpeople).toUpperCase();
-                case 2: return getString(R.string.title_fnumber).toUpperCase();
+                case 0: return getString(R.string.forward_history).toUpperCase();
+                case 1: return getString(R.string.forward_object).toUpperCase();
+                case 2: return getString(R.string.forward_number).toUpperCase();
             }
             return null;
         }
