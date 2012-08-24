@@ -23,7 +23,7 @@
     
     <string name="manually_add">manually add</string>
 	<string name="transferred_to">transferred to</string>
-    <string name="delete">delete</string>
+    <string name="delete">remove</string>
     <string name="export">export</string>
     <string name="clear">clear</string>
     <string name="manually_add_number">manually add number</string>
