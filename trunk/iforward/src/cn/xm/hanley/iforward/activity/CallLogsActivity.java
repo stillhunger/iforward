@@ -178,7 +178,7 @@ public class CallLogsActivity extends ListActivity {
 	
 	
 	
-	private Handler handler = new Handler(){
+	private  Handler handler = new Handler(){
 
 		@SuppressWarnings("unchecked")
 		@Override
