@@ -44,4 +44,5 @@
 	<item name="memo" type="id" />
 	<item name="scan_progress" type="id"/>
 	<item name="title_action_bar" type="id"/>
+	<item name="tip_begin" type="id"/>
 </resources>

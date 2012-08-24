@@ -35,9 +35,11 @@
         android:layout_marginTop="50dp" >
 
         <TextView
+            android:id="@id/tip_begin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
             android:text="@string/tip_forward_number_settings"
             android:textSize="14dp" />
     </FrameLayout>

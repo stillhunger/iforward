@@ -31,6 +31,7 @@ public class CustomFragment extends Fragment{
 
 	private Button numberSettings;
 	private TextView displayNumber;
+	private TextView tipBegin;
 	protected static final int CODE_REQUEST_CONTACT = 1;
 
 	@Override
@@ -47,6 +48,10 @@ public class CustomFragment extends Fragment{
 		String fnumber = share.getString(Constants.SPS_FORWARD_NUMBER, "");
 		if(null != fnumber && fnumber.length() > 0){
 			displayNumber.setText(fnumber);
+			tipBegin.setVisibility(View.GONE);
+		}else{
+			tipBegin.setVisibility(View.VISIBLE);
+			displayNumber.setText(getResources().getString(R.string.tip_no_number_settings));
 		}
 	}
 	
@@ -62,6 +67,7 @@ public class CustomFragment extends Fragment{
 	private void findViewByIds(){
 		numberSettings = (Button)getActivity().findViewById(R.id.number_setings);
 		displayNumber = (TextView)getActivity().findViewById(R.id.display_number);
+		tipBegin = (TextView)getActivity().findViewById(R.id.tip_begin);
 	}
 	
 	private void setListeners(){
@@ -152,6 +158,7 @@ public class CustomFragment extends Fragment{
 			String newNumber = bulidNumber(manuallyNumber);
 			intent.setData(Uri.parse(newNumber));
 			getActivity().startActivity(intent);
+			tipBegin.setVisibility(View.GONE);
 		}
 	}
 	
@@ -161,6 +168,7 @@ public class CustomFragment extends Fragment{
 		getActivity().startActivity(intent);
 		displayNumber.setText(getResources().getString(R.string.tip_no_number_settings));
 		numberSaveSPS("");
+		tipBegin.setVisibility(View.VISIBLE);
 	}
 	
 	private String bulidNumber(String number){
