@@ -6,37 +6,28 @@ import java.util.HashMap;
 import cn.xm.hanley.iforward.activity.CallLogsActivity;
 import cn.xm.hanley.iforward.activity.ContactsActivity;
 import cn.xm.hanley.iforward.activity.R;
-import cn.xm.hanley.iforward.activity.SelContactActivity;
 import cn.xm.hanley.iforward.adapter.ForwardAdapter;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.domain.History;
 import cn.xm.hanley.iforward.sqlite.BlockSQLite;
-import cn.xm.hanley.iforward.utils.ContactScanner;
 import cn.xm.hanley.iforward.utils.DataBaseFactoryUtil;
 import cn.xm.hanley.iforward.utils.ForwardScanner;
-import cn.xm.hanley.iforward.utils.HistoryScanner;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 
 /**
@@ -48,7 +39,6 @@ import android.widget.Toast;
  */
 public class ForwardFragment extends ListFragment {
 	
-	private static final String TAG = "ForwardFragment";
 	protected static final int CODE_REQUEST_CONTACT = 1;
 	ArrayList<History> selectedContacts;
 	ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
