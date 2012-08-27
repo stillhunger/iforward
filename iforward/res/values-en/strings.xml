@@ -41,4 +41,5 @@
     <string name="tip_export_success">export success</string>
     <string name="tip_export_nodata">export no data</string>
     <string name="tip_forward_number_settings">need to set the forward number before start</string>
+     <string name="guide">Guide</string>
 </resources>

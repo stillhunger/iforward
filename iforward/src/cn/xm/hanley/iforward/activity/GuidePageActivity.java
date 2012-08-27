@@ -5,10 +5,12 @@ import java.util.List;
 
 import cn.xm.hanley.iforward.TabSwipePage;
 import cn.xm.hanley.iforward.adapter.GuidePageAdapter;
+import cn.xm.hanley.iforward.constants.Constants;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -45,9 +47,26 @@ public class GuidePageActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_guide_page);
-		initGuidePage();
-		initImgRoundPoint();
+		
+		SharedPreferences sp = getSharedPreferences(Constants.SPS_FORWARD, Context.MODE_PRIVATE);
+		boolean guideFlag = sp.getBoolean(Constants.SPS_GUIDE_FLAG, true);
+		if(guideFlag){
+			setContentView(R.layout.layout_guide_page);
+			initGuidePage();
+			initImgRoundPoint();
+			sp.edit().putBoolean(Constants.SPS_GUIDE_FLAG, false).commit();
+		}else{
+			boolean flag = this.getIntent().getBooleanExtra("flag", false);
+			if(flag){
+				setContentView(R.layout.layout_guide_page);
+				initGuidePage();
+				initImgRoundPoint();
+			}else{
+				Intent intent = new Intent(this,TabSwipePage.class);
+				startActivity(intent);
+				finish();
+			}
+		}
 	}
 	
 	private void initGuidePage() {

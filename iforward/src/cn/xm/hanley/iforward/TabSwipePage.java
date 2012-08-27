@@ -1,6 +1,7 @@
 package cn.xm.hanley.iforward;
 
 import cn.xm.hanley.iforward.activity.AboutActivity;
+import cn.xm.hanley.iforward.activity.GuidePageActivity;
 import cn.xm.hanley.iforward.activity.R;
 import cn.xm.hanley.iforward.fragment.CustomFragment;
 import cn.xm.hanley.iforward.fragment.ForwardFragment;
@@ -69,9 +70,15 @@ public class TabSwipePage extends FragmentActivity implements ActionBar.TabListe
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent = null;
+		
 		switch(item.getItemId()){
 		case R.id.menu_about:
-			Intent intent = new Intent(this,AboutActivity.class);
+			intent = new Intent(this,AboutActivity.class);
+			startActivity(intent);
+		case R.id.menu_guide:
+			intent = new Intent(this,GuidePageActivity.class);
+			intent.putExtra("flag", true);
 			startActivity(intent);
 			break;
 		}
