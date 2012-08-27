@@ -3,12 +3,16 @@
     android:id="@+id/guide_item"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/ab_solid_custom_blue_inverse_holo"
+    android:background="@drawable/welcome"
     android:orientation="vertical" >
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="欢迎试用APP"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
         android:layout_weight="5" />
 
     <Button
