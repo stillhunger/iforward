@@ -41,4 +41,5 @@
     <string name="tip_export_success">導出成功</string>
     <string name="tip_export_nodata">無數據可導出</string>
     <string name="tip_forward_number_settings">啓用轉接功能請先設定轉接號碼</string>
+     <string name="guide">操作指引</string>
 </resources>

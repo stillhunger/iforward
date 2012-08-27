@@ -109,6 +109,8 @@ public class CustomFragment extends Fragment{
 			case 1:
 				Intent intent = new Intent(getActivity(),SelContactActivity.class);
 				startActivityForResult(intent, CODE_REQUEST_CONTACT);
+				getActivity().finish();
+				getActivity().overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);  
 				break;
 			case 2:
 				disableForward();

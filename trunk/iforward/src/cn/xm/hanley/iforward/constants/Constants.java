@@ -42,4 +42,6 @@ public class Constants {
 	public final static String SPS_FORWARD = "forward";
 	
 	public final static String SPS_FORWARD_NUMBER = "forward_number";
+	
+	public final static String SPS_GUIDE_FLAG = "guide_flag";
 }
