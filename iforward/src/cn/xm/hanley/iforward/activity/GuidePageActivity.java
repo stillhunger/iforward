@@ -161,6 +161,7 @@ public class GuidePageActivity extends Activity {
 		public void onClick(View v) {
 			Intent intent = new Intent(GuidePageActivity.this,TabSwipePage.class);
 			startActivity(intent);
+			overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);//切换Activity的过渡动
 			finish();
 		}
 	};
