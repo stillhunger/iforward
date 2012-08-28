@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">iForward</string>
     <string name="no_data">no data</string>
     <string name="ok">OK</string>
@@ -20,9 +21,8 @@
     <string name="facebook">facebook: http://www.facebook.com/hanleytowne</string>
     <string name="weibo">weibo: http://weibo.com/tanghanlin</string>
     <string name="source_code">SourceCode:http://code.google.com/p/iforward/</string>
-    
     <string name="manually_add">manually add</string>
-	<string name="transferred_to">transferred to</string>
+    <string name="transferred_to">transferred to</string>
     <string name="delete">remove</string>
     <string name="export">export</string>
     <string name="clear">clear</string>
@@ -41,5 +41,7 @@
     <string name="tip_export_success">export success</string>
     <string name="tip_export_nodata">export no data</string>
     <string name="tip_forward_number_settings">need to set the forward number before start</string>
-     <string name="guide">Guide</string>
+    <string name="guide">Guide</string>
+    <string name="app_start">Enter</string>
+
 </resources>
