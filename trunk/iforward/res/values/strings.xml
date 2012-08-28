@@ -43,4 +43,9 @@
     <string name="tip_forward_number_settings">启用转接功能请先设置转接号码</string>
     <string name="guide">操作指引</string>
     <string name="app_start">开始体验</string>
+    <string name="thanks">特别感谢</string>
+    <string name="bell_ui_weibo">美女UI微博: http://t.qq.com/ccf1229</string>
+    <string name="chaoge_weibo">超哥微博: http://t.qq.com/xm_zzcclp2012</string>
+    <string name="thanks_content">这里特别感谢美女UI非常耐心的设计界面，同时也非常感谢超哥对我转接想法的肯定,没有你们的支持也就没有 “我转接”,再次谢谢你们！</string>
+    
 </resources>
