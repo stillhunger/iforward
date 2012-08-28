@@ -10,17 +10,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="欢迎试用APP"
-        android:textColor="@android:color/white"
-        android:textSize="30dp"
         android:layout_weight="5" />
 
     <Button
         android:id="@+id/start"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="进入应用"
-        android:layout_margin="30dp"
+        android:text="@string/app_start"
+        android:layout_margin="50dp"
         android:background="@drawable/btn_normal"
         android:visibility="visible" >
     </Button>

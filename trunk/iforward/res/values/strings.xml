@@ -42,4 +42,5 @@
     <string name="tip_export_nodata">无数据导出</string>
     <string name="tip_forward_number_settings">启用转接功能请先设置转接号码</string>
     <string name="guide">操作指引</string>
+    <string name="app_start">开始体验</string>
 </resources>

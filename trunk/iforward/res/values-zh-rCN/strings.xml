@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">我转接</string>
     <string name="no_data">无数据</string>
     <string name="ok">确定</string>
@@ -20,9 +21,8 @@
     <string name="facebook">facebook: http://www.facebook.com/hanleytowne</string>
     <string name="weibo">新浪微博: http://weibo.com/tanghanlin</string>
     <string name="source_code">SourceCode:http://code.google.com/p/iforward/</string>
-    
     <string name="manually_add">手动添加</string>
-	<string name="transferred_to">来电被转至</string>
+    <string name="transferred_to">来电被转至</string>
     <string name="delete">移除</string>
     <string name="export">导出</string>
     <string name="clear">清除</string>
@@ -41,5 +41,7 @@
     <string name="tip_export_success">导出成功</string>
     <string name="tip_export_nodata">无数据导出</string>
     <string name="tip_forward_number_settings">启用转接功能请先设置转接号码</string>
-     <string name="guide">操作指引</string>
+    <string name="guide">操作指引</string>
+    <string name="app_start">开始体验</string>
+
 </resources>

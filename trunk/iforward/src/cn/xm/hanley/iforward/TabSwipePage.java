@@ -76,10 +76,12 @@ public class TabSwipePage extends FragmentActivity implements ActionBar.TabListe
 		case R.id.menu_about:
 			intent = new Intent(this,AboutActivity.class);
 			startActivity(intent);
+			break;
 		case R.id.menu_guide:
 			intent = new Intent(this,GuidePageActivity.class);
 			intent.putExtra("flag", true);
 			startActivity(intent);
+			finish();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
