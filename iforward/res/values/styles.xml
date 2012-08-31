@@ -4,10 +4,6 @@
 
     <style name="CustomActionBar" parent="android:style/Theme.Holo.Light">
         <item name="android:actionBarTabTextStyle">@style/customActionBarTabTextStyle</item>
-        <!-- 
-        <item name="android:actionBarTabStyle">@style/customActionBarTabStyle</item>
-        <item name="android:actionBarTabBarStyle">@style/customActionBarTabBarStyle</item>
-         -->
     </style>
 
     <!-- style for the tab text -->
@@ -16,18 +12,4 @@
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">normal</item>
     </style>
-    
-	<!--     
-	    style for the tabs
-	    <style name="customActionBarTabStyle">
-	        <item name="android:background">@drawable/actionbar_tab_bg</item>
-	        <item name="android:paddingLeft">20dp</item>
-	        <item name="android:paddingRight">20dp</item>
-	    </style>
-	
-	    style for the tab bar
-	    <style name="customActionBarTabBarStyle">
-	        <item name="android:background">@drawable/actionbar_tab_bar</item>
-	    </style>
-	-->
 </resources>

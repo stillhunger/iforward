@@ -148,11 +148,6 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
-        /**  
-        <item name="android:actionBarTabStyle">@style/customActionBarTabStyle</item>
-        <item name="android:actionBarTabBarStyle">@style/customActionBarTabBarStyle</item>
-         
-         */
         public static final int CustomActionBar=0x7f060001;
         /**  style for the tab text 
          */
