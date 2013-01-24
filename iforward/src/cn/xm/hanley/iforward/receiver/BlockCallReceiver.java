@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -95,7 +94,6 @@ public class BlockCallReceiver extends BroadcastReceiver {
 	}
 	
 	@SuppressWarnings("static-access")
-	@SuppressLint("WorldWriteableFiles")
 	private void saveToHistory(Context context,Contact c){
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

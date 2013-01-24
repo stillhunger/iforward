@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.Contact;
 import cn.xm.hanley.iforward.sqlite.BlockSQLite;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -33,7 +32,6 @@ public class ForwardScanner extends Thread {
 		loadForward();
 	}
 
-	@SuppressLint("NewApi")
 	public void loadForward() {
 		BlockSQLite db = DataBaseFactoryUtil.createFordwardDB(context);
 		ArrayList<Contact> contacts = db.queryAllForwardContact();

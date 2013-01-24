@@ -3,7 +3,6 @@ package cn.xm.hanley.iforward.fragment;
 import cn.xm.hanley.iforward.activity.R;
 import cn.xm.hanley.iforward.activity.SelContactActivity;
 import cn.xm.hanley.iforward.constants.Constants;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -41,7 +40,6 @@ public class CustomFragment extends Fragment{
 		return inflater.inflate(R.layout.fm_custom, container, false);
 	}
 	
-	@SuppressLint("WorldWriteableFiles")
 	@SuppressWarnings({"static-access" })
 	private void init(){
 		SharedPreferences share = getActivity().getSharedPreferences(Constants.SPS_FORWARD,getActivity().MODE_WORLD_WRITEABLE);
@@ -179,7 +177,6 @@ public class CustomFragment extends Fragment{
 		return sb.toString();
 	}
 	
-	@SuppressLint("WorldWriteableFiles")
 	@SuppressWarnings("static-access")
 	private void numberSaveSPS(String number){
 		SharedPreferences share = getActivity().getSharedPreferences(Constants.SPS_FORWARD,getActivity().MODE_WORLD_WRITEABLE);

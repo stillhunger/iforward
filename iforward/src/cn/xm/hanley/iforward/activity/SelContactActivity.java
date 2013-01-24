@@ -6,7 +6,6 @@ import java.util.HashMap;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.utils.ContactScanner;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -32,7 +31,6 @@ public class SelContactActivity extends ListActivity {
 	private ProgressBar progressBar;
 	private TextView titleActionBar;
 	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
