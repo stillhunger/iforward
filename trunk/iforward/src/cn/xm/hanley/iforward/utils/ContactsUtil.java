@@ -3,7 +3,6 @@ package cn.xm.hanley.iforward.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -28,7 +27,6 @@ public class ContactsUtil {
 	 * @return void
 	 * @throws
 	 */
-	@SuppressLint("NewApi")
 	public static ArrayList<HashMap<String,Object>> loadContacts(Context context){
 		
 		ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();

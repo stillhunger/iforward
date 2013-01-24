@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import cn.xm.hanley.iforward.constants.Constants;
 import cn.xm.hanley.iforward.domain.History;
 import cn.xm.hanley.iforward.sqlite.HistorySQLite;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -32,7 +31,6 @@ public class HistoryScanner extends Thread {
 		loadHistory();
 	}
 
-	@SuppressLint("NewApi")
 	public void loadHistory() {
 		HistorySQLite db = DataBaseFactoryUtil.createHistoryDB(context);
 		ArrayList<History> hlist = db.queryHistory();

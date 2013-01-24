@@ -9,7 +9,6 @@ import cn.xm.hanley.iforward.utils.CallLogScanner;
 import cn.xm.hanley.iforward.utils.ContactsUtil;
 
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -43,7 +42,6 @@ public class CallLogsActivity extends ListActivity {
 	private ProgressBar progressBar;
 	private TextView titleActionbar;
 	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,7 +78,6 @@ public class CallLogsActivity extends ListActivity {
 	
 	private OnClickListener onClickListener = new OnClickListener(){
 
-		@SuppressLint("WorldReadableFiles")
 		@Override
 		public void onClick(View v) {
 			switch(v.getId()){

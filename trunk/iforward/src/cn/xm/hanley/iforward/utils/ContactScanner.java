@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.xm.hanley.iforward.constants.Constants;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Handler;
@@ -35,7 +34,6 @@ public class ContactScanner extends Thread {
 		loadContact();
 	}
 
-	@SuppressLint("NewApi")
 	public void loadContact() {
 		
 		int flag = 1;
